@@ -1,3 +1,10 @@
+# === Project Specific ===
+app/in/
+app/out/
+!server/raytracer.o
+app/components
+
+# === Node.js ===
 # Logs
 logs
 *.log

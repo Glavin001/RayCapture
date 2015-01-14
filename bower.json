@@ -1,0 +1,21 @@
+{
+  "name": "RayCapture",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Glavin001/RayCapture",
+  "authors": [
+    "Glavin Wiechert <glavin.wiechert@gmail.com>"
+  ],
+  "private": true,
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.1",
+    "jquery": "~2.1.3"
+  }
+}

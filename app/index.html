@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to RayCapture!</h1>
+
+        <div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input type="email" class="form-control" id="scene-name" placeholder="Enter name" value="scene1">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Scene</label>
+                <textarea class="form-control" id="scene-contents" rows="20" placeholder="Type your scene contents"></textarea>
+            </div>
+            <!-- <button type="button" class="btn btn-default" id="submit">Submit</button> -->
+        </div>
+
+        </br>
+        <hr/>
+
+        <div class="text-center">
+            <img src="out/scene1.bmp" alt="ray tracer generated image"></img>
+
+            <h3>Console</h3>
+            <pre id="console"></pre>
+
+        </ditv>
+
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="components/jquery/dist/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Custom scripts -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>

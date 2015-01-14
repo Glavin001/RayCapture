@@ -1,0 +1,27 @@
+{
+  "name": "RayCapture",
+  "version": "0.1.0",
+  "description": "Create animated scenes with Three.js and render using Raytracing to create a video",
+  "main": "server/index.js",
+  "dependencies": {
+    "body-parser": "^1.10.1",
+    "express": "^4.10.8",
+    "method-override": "^2.3.1",
+    "morgan": "^1.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Glavin001/RayCapture.git"
+  },
+  "author": "Glavin Wiechert",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Glavin001/RayCapture/issues"
+  },
+  "homepage": "https://github.com/Glavin001/RayCapture"
+}
