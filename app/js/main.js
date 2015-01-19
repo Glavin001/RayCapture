@@ -7,6 +7,10 @@ $(document).ready(function() {
     // var $submit = $('button#submit');
     var $img = $('img');
     var $console = $('#console');
+    var $width = $('#image-width');
+    var $height = $('#image-height');
+    var $depthMin = $('#depth-min');
+    var $depthMax = $('#depth-max');
 
     // State
     var preset = '';
@@ -31,6 +35,10 @@ $(document).ready(function() {
         // Get data
         var name = $name.val();
         var contents = $contents.val();
+        var width = $width.val() || 200;
+        var height = $height.val() || 200;
+        var depthMin = $depthMin.val() || 0;
+        var depthMax = $depthMax.val() || 100;
 
         // Validate
         if (name.length < 2) {
@@ -41,7 +49,7 @@ $(document).ready(function() {
         }
 
         // Send request
-        var url = "/api/scene/" + name;
+        var url = ["/api/scene/", name, '/', depthMin, '/', depthMax, "/", width, "/", height].join('');
         $.post(url, {
                 'contents': contents
             })
@@ -60,6 +68,10 @@ $(document).ready(function() {
     // $submit.click(render);
     $name.keyup(render);
     $contents.keyup(render);
+    $width.keyup(render);
+    $height.keyup(render);
+    $depthMin.keyup(render);
+    $depthMax.keyup(render);
 
     loadPreset(function() {
         render();

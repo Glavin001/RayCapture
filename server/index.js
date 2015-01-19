@@ -26,19 +26,22 @@ app.use(bodyParser.json()) // parse application/json
 app.use(methodOverride()); // simulate DELETE and PUT
 
 // Ray Tracer
-app.post('/api/scene/:name', function(req, res) {
+app.post('/api/scene/:name/:depthmin/:depthmax/:width/:height', function(req,
+    res) {
 
     var sceneName = req.params.name;
     var sceneContents = req.body.contents;
-    var width = 500;
-    var height = 500;
+    var depthMin = req.params.depthmin || 0;
+    var depthMax = req.params.depthmax || 100;
+    var width = req.params.width || 500;
+    var height = req.params.height || 500;
 
     // Create file in `in/`
-    var inFile = path.resolve(inDir, sceneName+'.txt');
-    var outFile = path.resolve(outDir, sceneName+'.bmp');
+    var inFile = path.resolve(inDir, sceneName + '.txt');
+    var outFile = path.resolve(outDir, sceneName + '.bmp');
 
     console.log("===================");
-    console.log('Scene: '+sceneName);
+    console.log('Scene: ' + sceneName);
     console.log(sceneContents);
 
     fs.writeFile(inFile, sceneContents, function(err) {
@@ -52,12 +55,15 @@ app.post('/api/scene/:name', function(req, res) {
 
         // Render using Raytracer
         // ./server/raytracer.o -input app/in/scene1.txt -output app/out/scene1.bmp -size 200 200
-        var raytracer = spawn(raytracerPath, [
+        var args = [
             '-input', inFile, '-output', outFile,
-            '-size', width, height
-        ]);
+            '-size', width, height,
+            '-depth', depthMin, depthMax, 'test.bmp'
+        ];
+        // console.log('args: ', args);
+        var raytracer = spawn(raytracerPath, args);
         var log = "";
-        raytracer.stdout.on('data', function (data) {
+        raytracer.stdout.on('data', function(data) {
             log += data;
         });
         raytracer.on('close', function(code) {
@@ -66,7 +72,8 @@ app.post('/api/scene/:name', function(req, res) {
             // Return to user
             return res.json({
                 'imageName': sceneName,
-                'imageUrl': '/out/'+sceneName+'.bmp',
+                'imageUrl': '/out/' + sceneName +
+                    '.bmp',
                 'console': log
             });
 
