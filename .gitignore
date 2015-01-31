@@ -3,6 +3,8 @@ app/in/
 app/out/
 !server/raytracer.o
 app/components
+server/raytracer.o
+
 
 # === Node.js ===
 # Logs

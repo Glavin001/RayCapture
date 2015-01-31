@@ -47,7 +47,7 @@ app.post('/api/scene/:name/:depthmin/:depthmax/:width/:height', function(req,
     fs.writeFile(inFile, sceneContents, function(err) {
 
         if (err) {
-            console.error(error);
+            console.error(err);
             return res.json({
                 'error': err.message
             });
@@ -84,7 +84,7 @@ app.post('/api/scene/:name/:depthmin/:depthmax/:width/:height', function(req,
 });
 
 // Start server
-var server = app.listen(3000, function() {
+var server = app.listen(4000, function() {
 
     var host = server.address().address
     var port = server.address().port

@@ -17,10 +17,14 @@ npm install
 bower install
 ```
 
+### Raytracer.o
+
+Compile your raytracer and put in path server/raytracer.o
+
 ## Usage
 
 ```bash
 npm start
 ```
 
-Then go to http://localhost:3000/ and enjoy!
+Then go to http://localhost:4000/ and enjoy!
