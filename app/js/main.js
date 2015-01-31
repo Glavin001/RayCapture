@@ -5,7 +5,9 @@ $(document).ready(function() {
     var $name = $('#scene-name');
     var $contents = $('#scene-contents');
     // var $submit = $('button#submit');
-    var $img = $('img');
+    var $rasterImg = $('img.raster');
+    var $depthImg = $('img.depth');
+    var $normalsImg = $('img.normals');
     var $console = $('#console');
     var $width = $('#image-width');
     var $height = $('#image-height');
@@ -14,11 +16,13 @@ $(document).ready(function() {
 
     // State
     var preset = '';
-    var imageUrl = "";
+    var rasterImageUrl = "";
+    var depthImageUrl = "";
+    var normalsImageUrl = "";
 
     // Helpers
     function loadPreset(cb) {
-        $.get('/presets/scene1_02.txt')
+        $.get('/presets/scene_custom.txt')
             .done(function(data) {
                 preset = data;
                 $contents.val(preset);
@@ -29,7 +33,9 @@ $(document).ready(function() {
     function refreshImage() {
         var d = new Date();
         // Load
-        $img.attr('src', imageUrl + "?" + d.getTime());
+        $rasterImg.attr('src', rasterImageUrl + "?" + d.getTime());
+        $depthImg.attr('src', depthImageUrl + "?" + d.getTime());
+        $normalsImg.attr('src', normalsImageUrl + "?" + d.getTime());
     }
     function render() {
         // Get data
@@ -59,7 +65,9 @@ $(document).ready(function() {
                     $console.text(data.error);
                 } else {
                     $console.text(data.console);
-                    imageUrl = data.imageUrl;
+                    rasterImageUrl = data.imageUrl;
+                    depthImageUrl = data.depthImageUrl;
+                    normalsImageUrl = data.normalsImageUrl;
                     refreshImage();
                 }
             });

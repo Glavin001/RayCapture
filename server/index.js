@@ -39,6 +39,8 @@ app.post('/api/scene/:name/:depthmin/:depthmax/:width/:height', function(req,
     // Create file in `in/`
     var inFile = path.resolve(inDir, sceneName + '.txt');
     var outFile = path.resolve(outDir, sceneName + '.bmp');
+    var depthFile = path.resolve(outDir, 'depth-'+sceneName + '.bmp');
+    var normalFile = path.resolve(outDir, 'normals-'+sceneName + '.bmp');
 
     console.log("===================");
     console.log('Scene: ' + sceneName);
@@ -56,13 +58,18 @@ app.post('/api/scene/:name/:depthmin/:depthmax/:width/:height', function(req,
         // Render using Raytracer
         // ./server/raytracer.o -input app/in/scene1.txt -output app/out/scene1.bmp -size 200 200
         var args = [
-            '-input', inFile, '-output', outFile,
+            '-input', inFile,
+            '-output', outFile,
             '-size', width, height,
-            '-depth', depthMin, depthMax, 'test.bmp'
+            '-depth', depthMin, depthMax, depthFile,
+            '-normals', normalFile
         ];
         // console.log('args: ', args);
         var raytracer = spawn(raytracerPath, args);
         var log = "";
+        raytracer.stderr.on('data', function(data) {
+            log += data;
+        });
         raytracer.stdout.on('data', function(data) {
             log += data;
         });
@@ -72,8 +79,9 @@ app.post('/api/scene/:name/:depthmin/:depthmax/:width/:height', function(req,
             // Return to user
             return res.json({
                 'imageName': sceneName,
-                'imageUrl': '/out/' + sceneName +
-                    '.bmp',
+                'imageUrl': '/out/' + sceneName + '.bmp',
+                'depthImageUrl': '/out/' + 'depth-'+sceneName + '.bmp',
+                'normalsImageUrl': '/out/' + 'normals-'+sceneName + '.bmp',
                 'console': log
             });
 
