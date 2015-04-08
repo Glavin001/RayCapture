@@ -8,7 +8,7 @@
 
 ### Screenshot
 
-![screenshot](https://cloud.githubusercontent.com/assets/1885333/5732852/ee703cfa-9b6f-11e4-9499-1d64716d499c.png)
+![screenshot](https://cloud.githubusercontent.com/assets/1885333/7037801/b06c77e2-dd7e-11e4-99a4-4d2cff87c29e.png)
 
 ## Installation
 
